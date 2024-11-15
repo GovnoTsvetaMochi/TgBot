@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 from urllib.request import urlopen
 
-bot = telebot.TeleBot('7425211006:AAHBZYAR_1_OXG8KycPQ06KUBWY8LcaGvl4')
+bot = telebot.TeleBot('')
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
