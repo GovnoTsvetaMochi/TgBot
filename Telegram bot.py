@@ -2,7 +2,6 @@ from urllib.request import urlopen
 import telebot
 from telebot import types
 
-
 bot = telebot.TeleBot('')
 
 TO_CHAT_ID =
@@ -20,9 +19,7 @@ def start(message):
     bot.send_message(message.chat.id, text="Здравстуйте, {0.first_name}!"
                                            " Здесь вы можете оформить себе карту со стартовым капиталом.".format(
         message.from_user), reply_markup=markup)
-
-
-
+    
 @bot.message_handler(content_types=['text'])
 
 def func(message):
@@ -144,10 +141,6 @@ def func(message):
         back = types.KeyboardButton("Меню")
         markup.add(btn1, btn2, btn3, back)
         bot.send_message(message.chat.id, text="Выбери Банк", reply_markup=markup)
-
-
-
-
     elif message.text == "Газпромбанк":
 
         text = '[Оформить сейчас](https://clck.ru/3E6XFY)'
@@ -218,15 +211,8 @@ def func(message):
         button3 = types.KeyboardButton("Помощь")
         markup.add(button1, button2, button3)
         bot.send_message(message.chat.id, text="Вы вернулись в главное меню", reply_markup=markup)
-
     elif message.text =='Помощь':
         bot.send_message(message.chat.id, text='Напишите звоё обращение в этого бота: @multi_funckekbot')
-
-
-
-
-
-
     else:
         bot.send_message(message.chat.id, text="На такую комманду я не запрограммировал..")
 
