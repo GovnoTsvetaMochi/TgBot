@@ -1,72 +1,43 @@
+from urllib.request import urlopen
 import telebot
 from telebot import types
-from urllib.request import urlopen
 
-bot = telebot.TeleBot('7425211006:AAHBZYAR_1_OXG8KycPQ06KUBWY8LcaGvl4')
-TO_CHAT_ID = 887429402
+
+bot = telebot.TeleBot('')
+
+TO_CHAT_ID =
 requests_queue = []
-
-def help_chat(message):
- # Функция, отправляющая вопрос от пользователя в чат поддержки
-    def help_bot(message):
-        requests_queue.append((message.message_id, message.chat.id))
-        bot.forward_message(TO_CHAT_ID, message.chat.id, message.message_id)
-        markup_inline = types.InlineKeyboardMarkup([[
-            types.InlineKeyboardButton(text='Ответить', callback_data=f'answer{message.chat.id}')
-        ]])
-        bot.send_message(TO_CHAT_ID, f"Действие:", reply_markup=markup_inline)
-        bot.register_next_step_handler(message, help_bot)
-        print(str(message.from_user) + ' пишет: ' + message.text)
-
-    @bot.message_handler(commands=["requests"], func=lambda m: int(m.chat.id) == int(TO_CHAT_ID))
-    def all_messages(message):
-        bot.send_message(message.chat.id, "Доступные запросы:")
-        for i, req in enumerate(requests_queue):
-            bot.forward_message(TO_CHAT_ID, req[1], req[0])
-            markup_inline = types.InlineKeyboardMarkup([[
-                types.InlineKeyboardButton(text='Ответить', callback_data=f'answer{req[1]}')
-            ]])
-            bot.send_message(message.chat.id, f"Действие:", reply_markup=markup_inline)
-        print(str(message.from_user) + ' пишет: ' + message.text)
-
-    def send_answer(message: types.Message, call, chat_id):
-        bot.send_message(call.message.chat.id, "Ответ отправлен!")
-        bot.send_message(chat_id, message.text)
-        for i, req in enumerate(requests_queue):
-            if int(req[1]) == int(chat_id):
-                del requests_queue[i]
-        print(str(message.from_user) + ' пишет: ' + message.text)
-
-    @bot.callback_query_handler(func=lambda call: True)
-    def answer_callback(call: types.CallbackQuery):
-        if call.data.startswith("answer"):
-            chat_id = int(call.data[6:])
-
-            bot.send_message(call.message.chat.id, "Отправьте ответ на запрос")
-            bot.register_next_step_handler(call.message, lambda msg: send_answer(msg, call, chat_id))
+request_location = True
 @bot.message_handler(commands=['start'])
+
 def start(message):
 
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn1 = types.KeyboardButton("Работа с нами")
     btn2 = types.KeyboardButton("Оформить карту")
-    btn3 = types.KeyboardButton("Помощь")
-    markup.add(btn1, btn2,btn3)
-    bot.send_message(message.chat.id,
-                     text="Здравстуйте, {0.first_name}!"
-                          " Здесь вы можете оформить себе карту со стартовым капиталом.".format(message.from_user),
-                     reply_markup=markup)
+    btn3 = types.KeyboardButton(text="Помощь")
+    markup.add(btn1, btn2, btn3)
+    bot.send_message(message.chat.id, text="Здравстуйте, {0.first_name}!"
+                                           " Здесь вы можете оформить себе карту со стартовым капиталом.".format(
+        message.from_user), reply_markup=markup)
+
+
 
 @bot.message_handler(content_types=['text'])
+
 def func(message):
     markupp = types.ReplyKeyboardMarkup(resize_keyboard=True)
+
+
     if message.text == "Работа с нами":
+
         btntest = types.KeyboardButton("Работаем")
         markupp.add(btntest)
         bot.send_message(message.chat.id, text="🔥Мы рекламное агентство в Банковской сфере\n"
                                                "Сайт с описанием и отзывами - https://vk.com/worki2025\n"
                                                "💬Вы лично можете пообщаться с любым "
                                                "пользователем, как гарантом исполнения наших обязательств\n", reply_markup=markupp)
+
 
     elif message.text == "Работаем":
         btntest1 = types.KeyboardButton("Далее")
@@ -175,6 +146,8 @@ def func(message):
         bot.send_message(message.chat.id, text="Выбери Банк", reply_markup=markup)
 
 
+
+
     elif message.text == "Газпромбанк":
 
         text = '[Оформить сейчас](https://clck.ru/3E6XFY)'
@@ -242,12 +215,18 @@ def func(message):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         button1 = types.KeyboardButton("Работа с нами")
         button2 = types.KeyboardButton("Оформить карту")
-        markup.add(button1, button2)
+        button3 = types.KeyboardButton("Помощь")
+        markup.add(button1, button2, button3)
         bot.send_message(message.chat.id, text="Вы вернулись в главное меню", reply_markup=markup)
-    elif message.text == "Помощь":
-        help_chat(message)
-        back11 = types.KeyboardButton("Меню")
-        markupp.add(back11)
+
+    elif message.text =='Помощь':
+        bot.send_message(message.chat.id, text='Напишите звоё обращение в этого бота: @multi_funckekbot')
+
+
+
+
+
+
     else:
         bot.send_message(message.chat.id, text="На такую комманду я не запрограммировал..")
 
@@ -255,6 +234,8 @@ def func(message):
     print(str(message.from_user) +' пишет: ' +message.text)
     log = open('C:/Users/Толик-еболик/Desktop/TgbotLog/log.txt', 'a')
     log.write(str(message.from_user) + ' Написал: '+ message.text + '\n')
+
+
 
 
 bot.infinity_polling()
