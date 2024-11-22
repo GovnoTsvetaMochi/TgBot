@@ -1,45 +1,58 @@
 from urllib.request import urlopen
 import telebot
 from telebot import types
+from tkinter import *
+from tkinter import ttk
+from threading import Thread
 
 bot = telebot.TeleBot('')
 
-TO_CHAT_ID =
-requests_queue = []
-request_location = True
-@bot.message_handler(commands=['start'])
 
-def start(message):
+#TO_CHAT_ID = 
 
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton("Работа с нами")
-    btn2 = types.KeyboardButton("Оформить карту")
-    btn3 = types.KeyboardButton(text="Помощь")
-    markup.add(btn1, btn2, btn3)
-    bot.send_message(message.chat.id, text="Здравстуйте, {0.first_name}!"
+
+
+
+
+def bott():
+
+
+    @bot.message_handler(commands=['start'])
+    def start(message):
+
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton("Работа с нами")
+        btn2 = types.KeyboardButton("Оформить карту")
+        btn3 = types.KeyboardButton(text="Помощь")
+        markup.add(btn1, btn2, btn3)
+        bot.send_message(message.chat.id, text="Здравстуйте, {0.first_name}!"
                                            " Здесь вы можете оформить себе карту со стартовым капиталом.".format(
         message.from_user), reply_markup=markup)
-    
-@bot.message_handler(content_types=['text'])
-
-def func(message):
-    markupp = types.ReplyKeyboardMarkup(resize_keyboard=True)
 
 
-    if message.text == "Работа с нами":
-
-        btntest = types.KeyboardButton("Работаем")
-        markupp.add(btntest)
-        bot.send_message(message.chat.id, text="🔥Мы рекламное агентство в Банковской сфере\n"
-                                               "Сайт с описанием и отзывами - https://vk.com/worki2025\n"
-                                               "💬Вы лично можете пообщаться с любым "
-                                               "пользователем, как гарантом исполнения наших обязательств\n", reply_markup=markupp)
 
 
-    elif message.text == "Работаем":
-        btntest1 = types.KeyboardButton("Далее")
-        markupp.add(btntest1)
-        bot.send_message(message.chat.id, text="Каждому положена выплата от банка (Успевайте) 👇👇\n"
+
+    @bot.message_handler(content_types=['text'])
+
+    def func(message):
+        markupp = types.ReplyKeyboardMarkup(resize_keyboard=True)
+
+
+        if message.text == "Работа с нами":
+
+            btntest = types.KeyboardButton("Работаем")
+            markupp.add(btntest)
+            bot.send_message(message.chat.id, text="🔥Мы рекламное агентство в Банковской сфере\n"
+                                                   "Сайт с описанием и отзывами - https://vk.com/worki2025\n"
+                                                   "💬Вы лично можете пообщаться с любым "
+                                                   "пользователем, как гарантом исполнения наших обязательств\n", reply_markup=markupp)
+
+
+        elif message.text == "Работаем":
+            btntest1 = types.KeyboardButton("Далее")
+            markupp.add(btntest1)
+            bot.send_message(message.chat.id, text="Каждому положена выплата от банка (Успевайте) 👇👇\n"
                                                "📍 Суть подработки:\n"
                                                "Вы оформляйте бесплатные продукты банка, по нашей реферальной "
                                                "программе.\n"
@@ -57,25 +70,25 @@ def func(message):
                                                "✅ Легальная подработка по реферальной программе известных банков!\n",
                          reply_markup=markupp)
 
-    elif message.text == "Далее":
-        btntest2 = types.KeyboardButton("Получить задание")
-        markupp.add(btntest2)
-        bot.send_message(message.chat.id, text="📲⚒Что необходимо делать:\n"
+        elif message.text == "Далее":
+            btntest2 = types.KeyboardButton("Получить задание")
+            markupp.add(btntest2)
+            bot.send_message(message.chat.id, text="📲⚒Что необходимо делать:\n"
                                                "Заказывать по нашим ссылкам бесплатные дебетовые карты;\n"
                                                "Активировать карты, сообщать нам - получать вознаграждение;\n"
                                                "💡 Правильно ли я вас понял, вы готовы начать? Для вас подобраны "
                                                "первые задания\n", reply_markup=markupp)
-    elif message.text == "Получить задание":
-        photo_url1 = ('https://moneyman.ru/wp-content/uploads/2020/06/Geograficheskie-ogranicheniya-po-kartam'
+        elif message.text == "Получить задание":
+            photo_url1 = ('https://moneyman.ru/wp-content/uploads/2020/06/Geograficheskie-ogranicheniya-po-kartam'
                       '-Gazprombanka.jpg')
-        photo_url2 = 'https://cdn.viberu.ru/help/zzqkxg0452g.jpg'
-        photo_url3 = 'https://api-reforum.banki.ru/reforum/c4/10/31/7c/2d/sc5p16c43e83eea7.jpg'
-        text = '[Оформить сейчас](https://clck.ru/3E6XFY)'
-        text2 = '[Оформить сейчас](https://clck.ru/3E9dgR)'
-        text3 = '[Оформить сейчас](https://clck.ru/3E9drk)'
-        back1 = types.KeyboardButton("Меню")
-        markupp.add(back1)
-        bot.send_photo(message.chat.id, urlopen(photo_url1),
+            photo_url2 = 'https://cdn.viberu.ru/help/zzqkxg0452g.jpg'
+            photo_url3 = 'https://api-reforum.banki.ru/reforum/c4/10/31/7c/2d/sc5p16c43e83eea7.jpg'
+            text = '[Оформить сейчас](https://clck.ru/3E6XFY)'
+            text2 = '[Оформить сейчас](https://clck.ru/3E9dgR)'
+            text3 = '[Оформить сейчас](https://clck.ru/3E9drk)'
+            back1 = types.KeyboardButton("Меню")
+            markupp.add(back1)
+            bot.send_photo(message.chat.id, urlopen(photo_url1),
 
                        'Кэшбэк 35%\\ на всё самое важное\n'
 
@@ -94,7 +107,7 @@ def func(message):
 
                        parse_mode='MarkdownV2', reply_markup=markupp)
 
-        bot.send_photo(message.chat.id, urlopen(photo_url2),
+            bot.send_photo(message.chat.id, urlopen(photo_url2),
 
                        '💳 Первая дебетовая карта со скидкой везде\n'
 
@@ -115,7 +128,7 @@ def func(message):
                        '5% в супермаркетах\n'
                        + f"*{text2}*",parse_mode='MarkdownV2', reply_markup=markupp)
 
-        bot.send_photo(message.chat.id, urlopen(photo_url3),
+            bot.send_photo(message.chat.id, urlopen(photo_url3),
 
                        '🪙 Повышенный кэшбэк\n'
 
@@ -132,22 +145,26 @@ def func(message):
                        'До 500 000 ₽ в банкоматах Т‑Банка, от 3000 до 100 000 ₽ в других банкоматах\n' + f"*{text3}*",parse_mode='MarkdownV2', reply_markup=markupp)
 
 
-    elif message.text == "Оформить карту":
+        elif message.text == "Оформить карту":
 
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        btn1 = types.KeyboardButton("Газпромбанк")
-        btn2 = types.KeyboardButton("МТС банк")
-        btn3 = types.KeyboardButton("Тинькофф")
-        back = types.KeyboardButton("Меню")
-        markup.add(btn1, btn2, btn3, back)
-        bot.send_message(message.chat.id, text="Выбери Банк", reply_markup=markup)
-    elif message.text == "Газпромбанк":
+            markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            btn1 = types.KeyboardButton("Газпромбанк")
+            btn2 = types.KeyboardButton("МТС банк")
+            btn3 = types.KeyboardButton("Тинькофф")
+            back = types.KeyboardButton("Меню")
+            markup.add(btn1, btn2, btn3, back)
+            bot.send_message(message.chat.id, text="Выбери Банк", reply_markup=markup)
 
-        text = '[Оформить сейчас](https://clck.ru/3E6XFY)'
 
-        photo_url = 'https://moneyman.ru/wp-content/uploads/2020/06/Geograficheskie-ogranicheniya-po-kartam-Gazprombanka.jpg'
 
-        bot.send_photo(message.chat.id, urlopen(photo_url),
+
+        elif message.text == "Газпромбанк":
+
+            text = '[Оформить сейчас](https://clck.ru/3E6XFY)'
+
+            photo_url = 'https://moneyman.ru/wp-content/uploads/2020/06/Geograficheskie-ogranicheniya-po-kartam-Gazprombanka.jpg'
+
+            bot.send_photo(message.chat.id, urlopen(photo_url),
 
                        'Кэшбэк 35%\\ на всё самое важное\n'
 
@@ -160,13 +177,13 @@ def func(message):
                        parse_mode='MarkdownV2', reply_markup=markupp)
 
 
-    elif message.text == "МТС банк":
+        elif message.text == "МТС банк":
 
-        text2 = '[Оформить сейчас](https://clck.ru/3E9dgR)'
+            text2 = '[Оформить сейчас](https://clck.ru/3E9dgR)'
 
-        photo_url = 'https://cdn.viberu.ru/help/zzqkxg0452g.jpg'
+            photo_url = 'https://cdn.viberu.ru/help/zzqkxg0452g.jpg'
 
-        bot.send_photo(message.chat.id, urlopen(photo_url),
+            bot.send_photo(message.chat.id, urlopen(photo_url),
 
                        '💳 Первая дебетовая карта со скидкой везде\n'
 
@@ -181,13 +198,13 @@ def func(message):
                        parse_mode='MarkdownV2', reply_markup=markupp)
 
 
-    elif message.text == "Тинькофф":
+        elif message.text == "Тинькофф":
 
-        text3 = '[Оформить сейчас](https://clck.ru/3E9drk)'
+            text3 = '[Оформить сейчас](https://clck.ru/3E9drk)'
 
-        photo_url = 'https://api-reforum.banki.ru/reforum/c4/10/31/7c/2d/sc5p16c43e83eea7.jpg'
+            photo_url = 'https://api-reforum.banki.ru/reforum/c4/10/31/7c/2d/sc5p16c43e83eea7.jpg'
 
-        bot.send_photo(message.chat.id, urlopen(photo_url),
+            bot.send_photo(message.chat.id, urlopen(photo_url),
 
                        '🪙 Повышенный кэшбэк\n'
 
@@ -204,25 +221,57 @@ def func(message):
                        'До 500 000 ₽ в банкоматах Т‑Банка, от 3000 до 100 000 ₽ в других банкоматах\n' + f"*{text3}*",
 
                        parse_mode='MarkdownV2', reply_markup=markupp)
-    elif message.text == "Меню":
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        button1 = types.KeyboardButton("Работа с нами")
-        button2 = types.KeyboardButton("Оформить карту")
-        button3 = types.KeyboardButton("Помощь")
-        markup.add(button1, button2, button3)
-        bot.send_message(message.chat.id, text="Вы вернулись в главное меню", reply_markup=markup)
-    elif message.text =='Помощь':
-        bot.send_message(message.chat.id, text='Напишите звоё обращение в этого бота: @multi_funckekbot')
-    else:
-        bot.send_message(message.chat.id, text="На такую комманду я не запрограммировал..")
+        elif message.text == "Меню":
+            markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button1 = types.KeyboardButton("Работа с нами")
+            button2 = types.KeyboardButton("Оформить карту")
+            button3 = types.KeyboardButton("Помощь")
+            markup.add(button1, button2, button3)
+            bot.send_message(message.chat.id, text="Вы вернулись в главное меню", reply_markup=markup)
+
+        elif message.text =='Помощь':
+            bot.send_message(message.chat.id, text='Напишите звоё обращение в этого бота: @multi_funckekbot')
+        else:
+            bot.send_message(message.chat.id, text="На такую комманду я не запрограммировал..")
 
 
-    print(str(message.from_user) +' пишет: ' +message.text)
-    log = open('C:/Users/Толик-еболик/Desktop/TgbotLog/log.txt', 'a')
-    log.write(str(message.from_user) + ' Написал: '+ message.text + '\n')
+        print(str(message.from_user) +' пишет: ' +message.text)
+        log = open('C:/Users/Толик-еболик/Desktop/TgbotLog/log.txt', 'a')
+        log.write(str(message.from_user) + ' Написал: '+ message.text + '\n')
+    bot.infinity_polling()
+    bot.polling()
+def tktk():
+    win = Tk()
+    win.title('Тестовый бот')
+    win.resizable()
+    win.geometry('480x720')
+    #nb = ttk.Notebook(win, width=300, height=300) #доработаю потом
+
+    #fr1 = ttk.Frame(nb)
+    #fr2 = ttk.Frame(nb)
+    def smsid():
+        bot.send_message(identry.get(), text=smsentry.get())
+
+
+    smsentry = ttk.Entry()
+    smsentry.place(x=10, y=70)
+    label1 = Label(text='Введите текст сообщения')
+    label1.place(x=10, y=40)
+    sendmessage = ttk.Button(text='Отправить сообщение', command=smsid)
+    sendmessage.place(x=10, y=100)
+    label = Label(text='Введите id пользователя')
+    label.place(x=10, y=0)
+
+    identry = ttk.Entry()
+    identry.place(x=10, y=20)
+    win.mainloop()
 
 
 
 
-bot.infinity_polling()
-bot.polling()
+
+bot_thread = Thread(target=bott)
+bot_thread.start()
+
+gui_thread = Thread(target=tktk)
+gui_thread.start()
